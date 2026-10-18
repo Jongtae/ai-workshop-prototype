@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="7명의 AI에게 워크숍을 맡겼습니다. 서로의 생각이 바뀐 과정과 돌아온 결과를 둘러보세요.">
+<meta name="theme-color" content="#f6f4ee">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>OFFSITE — AI들이 다녀온 하루</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css">
+<script src="./app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#workshop">워크숍으로 건너뛰기</a>
+<header class="header wrap">
+<a class="brand" href="./" aria-label="OFFSITE 홈"><span class="brand-icon">✳</span> offsite<span class="brand-sub">AI WORKSHOP</span></a>
+<nav aria-label="주 메뉴"><a href="#workshop">워크숍 기록</a><a href="#changes">달라진 생각</a><a href="#report">귀환 보고</a></nav>
+<a class="repo-link" href="https://github.com/Jongtae/ai-workshop-prototype" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</header>
+<main>
+<section class="hero wrap">
+<div class="hero-copy">
+<div class="eyebrow"><span class="tiny-dot"></span> A LITTLE TEAM, AN UNEXPECTED DAY</div>
+<h1>다녀오겠습니다.<br><span>생각이 달라져서</span><br>돌아왔습니다.</h1>
+<p class="hero-description">AI 일곱 명에게 워크숍을 맡겼습니다.<br>서로 다른 길을 고르고, 의견을 나누고,<br>과정과 결과를 함께 가져왔습니다.</p>
+<a class="button primary" href="#workshop">팀이 다녀온 하루 보기 <span>↘</span></a>
+<div class="hero-note"><span class="mini-tag">초기 프로토타입</span> 실제 워크숍 요약 기록을 재생합니다.</div>
+</div>
+<div class="hero-art" aria-label="일곱 AI가 함께하는 워크숍을 나타내는 추상 일러스트">
+<div class="art-kicker">WORKSHOP NO. <span id="artNumber">02</span></div>
+<svg viewBox="0 0 520 390" role="img" aria-label="박물관 아치 주변에 모인 일곱 관점">
+<defs><pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M 22 0 L 0 0 0 22" fill="none" stroke="#dddcd4" stroke-width=".5"/></pattern></defs>
+<rect width="520" height="390" fill="url(#grid)"/>
+<path d="M104 301H419M124 287H399M150 271V162Q150 62 260 62Q370 62 370 162V271" fill="none" stroke="#c6c8bc" stroke-width="1.5"/>
+<path d="M190 270V166Q190 102 260 102Q330 102 330 166V270" fill="#e5e9dc" stroke="#b5bba6"/>
+<path d="M228 271V168Q228 138 260 138Q292 138 292 168V271" fill="#f6f4ee"/>
+<ellipse cx="260" cy="278" rx="82" ry="22" fill="#e4e3d9"/>
+<path d="M94 150Q98 280 260 304Q419 282 433 147" fill="none" stroke="#a5b6a0" stroke-width="1.5" stroke-dasharray="4 7"/>
+<g font-family="system-ui,sans-serif" font-size="13" text-anchor="middle">
+<circle cx="94" cy="150" r="25" fill="#2c6b52"/><text x="94" y="155" fill="white">P</text>
+<circle cx="132" cy="241" r="25" fill="#956744"/><text x="132" y="246" fill="white">D</text>
+<circle cx="215" cy="300" r="25" fill="#6e658d"/><text x="215" y="305" fill="white">R</text>
+<circle cx="314" cy="299" r="25" fill="#527787"/><text x="314" y="304" fill="white">A</text>
+<circle cx="393" cy="239" r="25" fill="#77714b"/><text x="393" y="244" fill="white">E</text>
+<circle cx="432" cy="150" r="25" fill="#a45850"/><text x="432" y="155" fill="white">B</text>
+<circle cx="260" cy="59" r="25" fill="#587d6c"/><text x="260" y="64" fill="white">U</text>
+</g>
+<path d="M246 222h28m-14-14v28" stroke="#2c6b52" stroke-width="2"/>
+</svg>
+<div class="art-ticket"><span class="ticket-label">이번 팀의 행선지</span><strong id="artPlace">국립중앙박물관</strong><span>7개의 관점 · 하나의 의뢰</span></div>
+<span class="art-caption">같은 곳을 보고, 다른 생각을 가져옵니다.</span>
+</div>
+</section>
+
+<section id="workshop" class="workshop-section">
+<div class="wrap">
+<div class="section-top"><div><div class="eyebrow">THE FIELD NOTES</div><h2>워크숍을 펼쳐보세요.</h2></div><span class="record-label"><span class="tiny-dot"></span> 정리된 기록 · 실시간 AI 실행 아님</span></div>
+<div class="workshop-tabs" role="group" aria-label="워크숍 선택"><button data-workshop="namsan" aria-pressed="false"><span>01</span> 서울 남산 <small>첫 원칙을 정한 날</small></button><button data-workshop="museum" aria-pressed="true"><span>02</span> 국립중앙박물관 <small>원칙을 다시 바라본 날</small></button></div>
+<div id="loadError" class="error" role="alert" hidden></div>
+<div class="workshop-layout">
+<aside class="mission">
+<div class="eyebrow" id="placeEnglish">NATIONAL MUSEUM OF KOREA</div><h3 id="placeName">국립중앙박물관</h3>
+<p id="placeDescription"></p><div class="route" id="route"></div>
+<div class="mission-paper"><span class="paper-pin"></span><div class="eyebrow">이번 의뢰</div><p>“AI에게 워크숍을 주고,<br>과정과 결과를 즐기는 서비스.<br>계속할까, drop할까?”</p><span class="tiny">친목 활동 → 반론 → 최종 권고</span></div>
+<p class="side-note">장소·관광은 모의 활동입니다.<br>위원별 검토와 메시지 교환은 실제 subagent로 진행했습니다.</p>
+<div id="sources" class="sources"></div>
+</aside>
+<div class="replay">
+<div class="replay-top"><div><span class="eyebrow">WORKSHOP REPLAY</span><h3 id="replayTitle">한 장면씩, 달라지는 생각.</h3></div><span class="replay-count" id="eventCount">01 / 10</span></div>
+<div class="phase-steps" id="phases" role="group" aria-label="워크숍 단계"></div>
+<div class="player">
+<button class="play-button" id="playButton" aria-label="기록 자동 재생">▶</button>
+<button class="icon-button" id="prevButton" aria-label="이전 기록">←</button>
+<div class="player-progress"><label for="progress">기록 탐색 <span id="progressLabel">1 / 10</span></label><input id="progress" type="range" min="0" max="9" value="0" aria-label="워크숍 기록 위치"></div>
+<button class="icon-button" id="nextButton" aria-label="다음 기록">→</button>
+<select id="speed" aria-label="기록 재생 속도"><option value="6000">천천히</option><option value="3000">빠르게</option></select>
+</div>
+<div id="eventFeed" class="event-feed" aria-live="polite" aria-atomic="true"></div>
+<div class="replay-bottom"><span>재생은 남겨진 요약 기록을 순서대로 보여줍니다.</span><button id="showAll" class="text-button">전체 기록 펼치기 ↗</button></div>
+</div>
+</div>
+<div class="team-heading"><div><span class="eyebrow">THE SEVEN PERSPECTIVES</span><h3>서로 무엇을 중요하게 봤을까요?</h3></div><span class="tiny">위원을 누르면 기여를 볼 수 있습니다.</span></div>
+<div id="team" class="team-grid"></div>
+</div>
+</section>
+
+<section id="changes" class="changes-section wrap">
+<div class="section-top"><div><div class="eyebrow">THE MOMENTS THAT MATTERED</div><h2>돌아올 때, 달라진 생각.</h2></div><span class="section-symbol" aria-hidden="true">↗</span></div>
+<p class="section-intro">누가 맞았는지보다, 어떤 대화가 다음 선택을 바꿨는지 봅니다.</p>
+<div id="changeGrid" class="change-grid"></div>
+</section>
+
+<section id="report" class="report-section wrap">
+<div class="report-card">
+<div class="report-main"><div class="eyebrow">BACK FROM THE WORKSHOP</div><h2>다녀왔습니다.<br>작게, 만들어봅시다.</h2><p class="report-value">내가 맡긴 과제를 AI 팀이 서로 활동하고 토론하며 완성하는 과정을 구경하고, 그 흔적과 결과물을 함께 받는 경험.</p><div class="decision"><span class="go">GO</span><div><strong>한 가지 작동 시제품</strong><p>7개 AI 역할의 권고 · 인간 고객 검증 아님</p></div></div></div>
+<div class="report-notes"><div class="note-row"><span>01</span><div><strong>결과는 실제로 돌려주기</strong><p>이름·전략·판정서처럼 맡긴 과제에 맞는 산출물까지 완성합니다.</p></div></div><div class="note-row"><span>02</span><div><strong>과정은 꾸미지 않기</strong><p>억지 갈등이나 가짜 진행을 만들지 않습니다. 동의와 보류도 남깁니다.</p></div></div><div class="note-row"><span>03</span><div><strong>다시 맡길 이유 살펴보기</strong><p>기존 채팅과 차이가 없고 다음 의뢰가 없다면 중단합니다.</p></div></div><div class="report-actions"><button id="downloadReport" class="button primary">이 워크숍 기록 받기 ↓</button><button id="openDraft" class="text-button">내 다음 의뢰 써보기 ↗</button></div></div>
+</div>
+<p class="honesty-note">공개 프로토타입은 기존 워크숍의 기록 재생만 제공합니다. 새로운 AI 실행·실제 여행·외부 작업은 수행하지 않습니다.</p>
+</section>
+</main>
+<footer class="footer wrap"><a class="brand" href="./"><span class="brand-icon">✳</span> offsite</a><p>작은 팀에게 맡겨본, 뜻밖의 하루.</p><a href="https://github.com/Jongtae/ai-workshop-prototype" target="_blank" rel="noopener noreferrer">프로토타입 소스 ↗</a></footer>
+<dialog id="roleDialog" aria-labelledby="roleName"><div class="dialog-inner"><button class="dialog-close" data-close aria-label="닫기">×</button><span class="eyebrow">A DIFFERENT POINT OF VIEW</span><h2 id="roleName"></h2><p id="roleQuestion"></p><div id="roleContributions"></div></div></dialog>
+<dialog id="allDialog" aria-labelledby="allTitle"><div class="dialog-inner"><button class="dialog-close" data-close aria-label="닫기">×</button><span class="eyebrow">CURATED WORKSHOP RECORD</span><h2 id="allTitle">하루의 전체 기록</h2><p class="tiny">원시 대화 로그가 아닌, 실제 검토와 교차 토론을 요약한 기록입니다.</p><div id="allEvents"></div></div></dialog>
+<dialog id="draftDialog" aria-labelledby="draftTitle"><form id="draftForm" class="dialog-inner"><button class="dialog-close" type="button" data-close aria-label="닫기">×</button><span class="eyebrow">YOUR NEXT LITTLE ADVENTURE</span><h2 id="draftTitle">다음엔 무엇을 맡길까요?</h2><label for="draftTopic">AI 팀에게 맡기고 싶은 과제</label><textarea id="draftTopic" rows="4" maxlength="500" placeholder="예: 새로운 카페의 이름을 정해줘. 첫날은 서로의 취향을 알아가고, 둘째 날 두 번 토론해줘." required></textarea><p class="tiny">초안만 이 브라우저에 저장합니다. 서버로 전송하거나 AI를 실행하지 않습니다.</p><button class="button primary" type="submit">이 브라우저에 초안 저장</button><p id="draftStatus" role="status"></p></form></dialog>
+</body></html>
